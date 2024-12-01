@@ -1,0 +1,30 @@
+= Advent of Spring Boot - DAY01
+
+== Prerequisites
+
+=== Install SDK Man
+
+[source,sh]
+----
+curl -s "https://get.sdkman.io" | bash
+----
+
+[source,sh]
+----
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+----
+
+=== Install Java
+
+[source,sh]
+----
+$ sdk install java 23.0.1-zulu
+----
+
+=== Install Intellij Idea
+
+To install Intellij Idea https://www.jetbrains.com/help/idea/installation-guide.html[see].
+
+== Goal
+
+The goal of DAY01 of Advent of Spring Boot is to have an endpoint with a Helloworld.
