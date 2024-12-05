@@ -1,0 +1,37 @@
+= Advent of Spring Boot - DAY04 - Error handling
+
+== Curl Commands
+
+=== Post
+
+[source, bash]
+----
+curl -X POST http://localhost:8080/api/customers \
+-H "Content-Type: application/json" \
+-d '{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "firstName": "John",
+  "lastName": "Doe"
+}'
+
+----
+
+=== Delete
+
+[source, bash]
+----
+curl -X DELETE http://localhost:8080/api/customers/550e8400-e29b-41d4-a716-446655440000
+----
+
+=== Get
+
+
+[source, bash]
+----
+curl http://localhost:8080/api/customers/550e8400-e29b-41d4-a716-446655440000
+----
+
+[source, bash]
+----
+curl http://localhost:8080/api/customers
+----
