@@ -1,0 +1,2 @@
+docker run --name customers-api-db -e POSTGRES_USER=customer -e POSTGRES_PASSWORD=customer -e POSTGRES_DB=customer -p 5432:5432 -d postgres
+
