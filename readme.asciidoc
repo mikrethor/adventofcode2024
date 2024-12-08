@@ -1,0 +1,29 @@
+= Advent of code - Sopring Boot
+
+== 20241201 - DAY01 - Create a Spring Boot application
+
+link:./20241201/readme.asciidoc[DAY01 - readme]
+
+== 20241202 - DAY02 - Add endpoints
+
+link:./20241202/readme.asciidoc[DAY02 - readme]
+
+== 20241203 - DAY03 - Handling httpcode
+
+link:./20241203/readme.asciidoc[DAY03 - readme]
+
+== 20241204 - DAY04 - Router function
+
+link:./20241204/readme.asciidoc[DAY04 - readme]
+
+== 20241205 - DAY05 - HandlerFilterFunction to handle errors
+
+link:./20241205/readme.asciidoc[DAY05 - readme]
+
+== 20241206 - DAY06 - Using ProblemDetail
+
+link:./20241206/readme.asciidoc[DAY06 - readme]
+
+== 20241207 - DAY07 - Add a database
+
+link:./20241207/readme.asciidoc[DAY07 - readme]
