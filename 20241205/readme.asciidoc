@@ -1,5 +1,16 @@
-error 400
+= Advent of Spring Boot - DAY05
+
+== error 400
+
+[source, bash]
+----
 curl -i localhost:8080/api/customers/d14feb03-15fd-491b-83f6-5f66899dc8b1
-error 500
+----
+
+== error 500
+
+[source, bash]
+----
 curl -i localhost:8080/api/customers/ddd
+----
 

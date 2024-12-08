@@ -1,4 +1,4 @@
-= Advent of code - Sopring Boot
+= Advent of code - Spring Boot
 
 == 20241201 - DAY01 - Create a Spring Boot application
 
