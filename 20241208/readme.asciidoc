@@ -1,0 +1,17 @@
+= Advent of Spring Boot - DAY08
+
+pb get body https://stackoverflow.com/questions/60740572/how-to-get-body-as-string-from-serverresponse-for-test
+
+correction de
+
+```java
+    public ServerResponse createCustomer(ServerRequest request) throws ServletException, IOException {
+        Customer customer = request.body(Customer.class);
+
+        var customerToCreate = new Customer(UUID.randomUUID(), customer.getFirstName(), customer.getLastName());
+
+        customerToCreate = repository.save(customerToCreate);
+
+        return ServerResponse.ok().body(customerToCreate);
+    }
+```

@@ -27,3 +27,11 @@ link:./20241206/readme.asciidoc[DAY06 - readme]
 == 20241207 - DAY07 - Add a database
 
 link:./20241207/readme.asciidoc[DAY07 - readme]
+
+== 20241208 - DAY08 - Test unitaires with Mockito
+
+link:./20241208/readme.asciidoc[DAY08 - readme]
+
+== 20241209 - DAY09 - Test unitaires with MockMvc
+
+link:./20241208/readme.asciidoc[DAY09 - readme]

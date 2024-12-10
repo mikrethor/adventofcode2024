@@ -1,0 +1,5 @@
+= Advent of Spring Boot - DAY09
+
+pb get body https://stackoverflow.com/questions/60740572/how-to-get-body-as-string-from-serverresponse-for-test
+
+cpier de CustomerHandlerTest vers CustomerEndpointMockMvcTest et utiliser @WebMvcTest(RouterConfiguration.class)
