@@ -1,4 +1,4 @@
-= Advent of Spring Boot - DAY07
+= Advent of Spring Boot - DAY07 - Add a database
 
 [source, bash]
 ----

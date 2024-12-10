@@ -1,5 +1,40 @@
-= Advent of Spring Boot - DAY09
+= Advent of Spring Boot - DAY09 - Test unitaires with MockMvc
 
-pb get body https://stackoverflow.com/questions/60740572/how-to-get-body-as-string-from-serverresponse-for-test
+== Mockito
 
-cpier de CustomerHandlerTest vers CustomerEndpointMockMvcTest et utiliser @WebMvcTest(RouterConfiguration.class)
+See https://site.mockito.org/#how[Mockito website]
+
+== MockitoBean
+
+See https://docs.spring.io/spring-framework/reference/testing/annotations/integration-spring/annotation-mockitobean.html[MockitoBean annotation].
+
+== Test slices
+
+See https://docs.spring.io/spring-boot/appendix/test-auto-configuration/slices.html[the different test slices].
+
+== Setup
+[source, java]
+----
+@WebMvcTest(RouterConfiguration.class)
+@Import(CustomerHandler.class)
+class CustomerEndpointMockMvcTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockitoBean
+    private CustomerRepository customerRepository;
+----
+
+== Usage
+
+[source, java]
+----
+ @Test
+    void getCustomers() throws ServletException, IOException {
+        UUID id = UUID.randomUUID();
+        String firstName = "Santa";
+        String lastName = "Claus";
+
+        when(customerRepository.findAll()).thenReturn(List.of(new Customer(id, firstName, lastName)));
+----

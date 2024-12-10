@@ -1,17 +1,34 @@
-= Advent of Spring Boot - DAY08
+= Advent of Spring Boot - DAY08 - Test unitaires with Mockito
 
-pb get body https://stackoverflow.com/questions/60740572/how-to-get-body-as-string-from-serverresponse-for-test
+== Mockito
 
-correction de
+See https://site.mockito.org/#how[Mockito website]
 
-```java
-    public ServerResponse createCustomer(ServerRequest request) throws ServletException, IOException {
-        Customer customer = request.body(Customer.class);
+== Setup
+[source, java]
+----
+@ExtendWith(MockitoExtension.class)
+class CustomerHandlerTest {
 
-        var customerToCreate = new Customer(UUID.randomUUID(), customer.getFirstName(), customer.getLastName());
+    private CustomerHandler customerHandler;
 
-        customerToCreate = repository.save(customerToCreate);
+    @Mock
+    private CustomerRepository customerRepository;
 
-        return ServerResponse.ok().body(customerToCreate);
-    }
-```
+
+    ...
+}
+----
+
+== Usage
+
+[source, java]
+----
+ @Test
+    void getCustomers() throws ServletException, IOException {
+        UUID id = UUID.randomUUID();
+        String firstName = "Santa";
+        String lastName = "Claus";
+
+        when(customerRepository.findAll()).thenReturn(List.of(new Customer(id, firstName, lastName)));
+----

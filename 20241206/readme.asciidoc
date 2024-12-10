@@ -1,4 +1,4 @@
-= Advent of Spring Boot - DAY06
+= Advent of Spring Boot - DAY06 - Using ProblemDetail
 
 == error 400
 

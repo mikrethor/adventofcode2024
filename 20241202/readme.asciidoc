@@ -1,4 +1,4 @@
-= Advent of Spring Boot - DAY02
+= Advent of Spring Boot - DAY02 - Add endpoints
 
 == Curl Commands
 

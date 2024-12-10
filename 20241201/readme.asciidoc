@@ -1,4 +1,4 @@
-= Advent of Spring Boot - DAY01
+= Advent of Spring Boot - DAY01 - Create a Spring Boot application
 
 == Prerequisites
 
