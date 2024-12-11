@@ -1,0 +1,31 @@
+= Advent of Spring Boot - DAY10
+
+Today is about how to test with rest assured.
+
+For now the docker needs to be up when the unit tests are executed.
+
+[source, bash]
+----
+docker run --name customers-api-db -e POSTGRES_USER=customer -e POSTGRES_PASSWORD=customer -e POSTGRES_DB=customer -p 5432:5432 -d postgres
+----
+
+The dependencies to add to the pom file.
+
+[source, xml]
+----
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>spring-mock-mvc</artifactId>
+            <scope>test</scope>
+        </dependency>
+----
+
+== Resources
+
+- https://rest-assured.io
