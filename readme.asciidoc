@@ -34,4 +34,8 @@ link:./20241208/readme.asciidoc[DAY08 - readme]
 
 == 20241209 - DAY09 - Test unitaires with MockMvc
 
-link:./20241208/readme.asciidoc[DAY09 - readme]
+link:./20241209/readme.asciidoc[DAY09 - readme]
+
+== 20241210 - DAY10 - Test unitaires with RestAssured
+
+link:./20241210/readme.asciidoc[DAY10 - readme]
