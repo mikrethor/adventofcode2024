@@ -1,0 +1,124 @@
+package com.xavierbouclet.adventofcode;
+
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.List;
+import java.util.UUID;
+
+import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.text.MatchesPattern.matchesPattern;
+
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Testcontainers
+class CustomerEndpointITTest {
+
+    @LocalServerPort
+    private int port;
+
+    @Container
+    private static final PostgreSQLContainer postgreSQLContainer = (PostgreSQLContainer) new PostgreSQLContainer("postgres:latest")
+            .withDatabaseName("integration-tests-db")
+            .withUsername("sa")
+            .withPassword("sa").waitingFor(Wait.forListeningPort());
+
+    @DynamicPropertySource
+    static void overrideProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgreSQLContainer::getUsername);
+        registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
+    }
+
+
+    @BeforeEach
+    void setup() {
+
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = port;
+    }
+
+    @Test
+    void getCustomers() {
+        UUID id = UUID.fromString("86d50633-a49f-4aee-8429-e085eb4d3fc4");
+        String firstName = "Santa";
+        String lastName = "Claus";
+
+        List<Customer> response = given()
+                .when()
+                .get("/api/customers")
+                .then()
+                .contentType("application/json")
+                .statusCode(200)
+                .body("size()", equalTo(13))
+                .extract()
+                .body().jsonPath().getList(".", Customer.class);
+
+        var customer = response.stream().filter(c -> c.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("failed"));
+
+        assertThat(customer).isEqualTo(new Customer(id, firstName, lastName));
+    }
+
+    @Test
+    void getCustomer() {
+        UUID id = UUID.fromString("86d50633-a49f-4aee-8429-e085eb4d3fc4");
+        String firstName = "Santa";
+        String lastName = "Claus";
+
+        given()
+                .pathParam("id", id.toString())
+                .when()
+                .get("/api/customers/{id}")
+                .then()
+                .contentType("application/json")
+                .statusCode(200) // Verify HTTP 204 No Content
+                .body("id", equalTo(id.toString()))
+                .body("firstName", equalTo(firstName))
+                .body("lastName", equalTo(lastName));
+    }
+
+    @Test
+    void createCustomer() throws Exception {
+        UUID firstId = UUID.randomUUID();
+        String firstName = "Rudolph";
+        String lastName = "Deer";
+
+        given()
+                .contentType("application/json")
+                .when()
+                .body("""
+                        {"id":"%s","firstName":"Rudolph","lastName":"Deer"}""".formatted(firstId))
+                .post("/api/customers")
+                .then()
+                .contentType("application/json")
+                .statusCode(200)
+                .body("id", matchesPattern("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"))
+                .body("firstName", equalTo(firstName))
+                .body("lastName", equalTo(lastName));
+    }
+
+    @Test
+    void deleteCustomer() throws Exception {
+        UUID id = UUID.randomUUID();
+
+        given()
+                .pathParam("id", id)
+                .when()
+                .delete("/api/customers/{id}")
+                .then()
+                .statusCode(204)
+                .body(emptyOrNullString());
+    }
+}

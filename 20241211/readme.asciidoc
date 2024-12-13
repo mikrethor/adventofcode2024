@@ -1,0 +1,12 @@
+= Advent of Spring Boot - DAY11
+
+pb get body https://stackoverflow.com/questions/60740572/how-to-get-body-as-string-from-serverresponse-for-test
+
+cpier de CustomerEndpointMockMvcTest vers CustomerEndpointRestAssuredTest et utiliser @WebMvcTest(RouterConfiguration.class)
+
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>spring-mock-mvc</artifactId>
+            <scope>test</scope>
+        </dependency>

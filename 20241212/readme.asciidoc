@@ -1,0 +1,21 @@
+= Advent of Spring Boot - DAY12
+
+Today is about how to document our API with springdoc.
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.6.0</version>
+</dependency>
+----
+
+== Swagger of our API
+
+http://localhost:8080/swagger-ui/index.html[see]
+
+== Resources
+
+- https://springdoc.org
+
