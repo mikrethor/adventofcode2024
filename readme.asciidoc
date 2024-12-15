@@ -47,3 +47,12 @@ link:./20241211/readme.asciidoc[DAY11 - readme]
 == 20241212 - DAY12 - Documentation with springdoc
 
 link:./20241212/readme.asciidoc[DAY12 - readme]
+
+== 20241213 - DAY13 - Documentation with springdoc
+
+link:./20241213/readme.asciidoc[DAY13 - readme]
+
+== 20241214 - DAY14 - Integration test with testcontainers
+
+link:./20241214/readme.asciidoc[DAY14 - readme]
+

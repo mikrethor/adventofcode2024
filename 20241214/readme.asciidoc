@@ -1,0 +1,44 @@
+= Advent of Spring Boot - DAY13
+
+Today is about how to manage properties.
+
+@Value vc @ConfigurationProperties that is the question.
+
+Define your properties in your yaml application file.
+
+[source, yaml]
+----
+my:
+  properties:
+    url: https://www.xavierbouclet.com
+    activated: true
+    timeout: 10
+----
+
+Define a POJO for your properties.
+
+[source, java]
+----
+@ConfigurationProperties(prefix = "my.properties")
+public record SomeConfiguration(URI url,
+                                boolean activated,
+                                @DurationUnit(ChronoUnit.SECONDS) Duration timeout) {
+}
+
+----
+
+Add @EnableConfigurationProperties in your Spring Boot beans configuration.
+
+[source, java]
+----
+@SpringBootApplication
+@EnableConfigurationProperties(SomeConfiguration.class)
+public class AdventofcodeApplication {
+    //...
+}
+----
+
+== Resources
+
+- https://www.baeldung.com/configuration-properties-in-spring-boot
+- https://docs.spring.io/spring-boot/how-to/properties-and-configuration.html

@@ -1,0 +1,31 @@
+= Advent of Spring Boot - DAY13
+
+Today is about how to document our API with .
+
+[source, xml]
+----
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-restassured</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epages</groupId>
+            <artifactId>restdocs-api-spec-restassured</artifactId>
+            <version>${restdocs-api-spec-restassured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epages</groupId>
+            <artifactId>restdocs-api-spec</artifactId>
+            <version>${restdocs-api-spec-restassured.version}</version>
+            <scope>test</scope>
+        </dependency>
+----
+
+== Resources
+
+- https://spring.io/projects/spring-restdocs
+- https://github.com/ePages-de/restdocs-api-spec
