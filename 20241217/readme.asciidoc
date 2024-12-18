@@ -1,0 +1,39 @@
+= Advent of Spring Boot - DAY17
+
+Use build pack.
+
+Change the pom :
+
+[source, xml]
+----
+    <profiles>
+        <profile>
+            <id>buildpack-build</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <imageName>adventofcode:v1</imageName>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>build-image</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+----
+
+Use the command :
+
+[source, bash]
+----
+./mvnw clean package spring-boot:build-image -Pbuildpack-build
+----
