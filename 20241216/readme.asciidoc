@@ -1,0 +1,60 @@
+= Advent of Spring Boot - DAY16
+
+Today, it's about, how to build a Docker container with a Dockerfile.
+
+[source, dockerfile]
+----
+FROM azul/zulu-openjdk-alpine:23
+
+WORKDIR /app
+
+COPY /target/adventofcode-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.jar"]
+----
+
+Use the command to build the docker image :
+
+[source, bash]
+----
+docker build -t adventofcode:v1 .
+----
+
+Use the app and the db with :
+
+[source,bash]
+----
+docker compose up
+----
+
+See the docker-compose.yaml file :
+
+[source, yaml]
+----
+version: "3.9"
+services:
+  db:
+    image: 'postgres:15.1'
+    container_name: db
+    environment:
+      - POSTGRES_USER=customer
+      - POSTGRES_PASSWORD=customer
+    ports:
+      - "5432:5432"
+
+  app:
+    image: adventofcode:v1
+    container_name: advent-app
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_USERNAME: customer
+      SPRING_DATASOURCE_PASSWORD: customer
+    ports:
+      - "8080:8080"
+
+----
+
