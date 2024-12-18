@@ -1,6 +1,6 @@
-= Advent of Spring Boot - DAY14
+= Advent of Spring Boot - DAY15
 
-Today is about how to manage properties.
+Today is about how to validate the properties properties.
 
 @Value vc @ConfigurationProperties that is the question.
 
@@ -15,16 +15,28 @@ my:
     timeout: 10
 ----
 
-Define a POJO for your properties.
+Add the following dependency in the pom file :
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+----
+
+Define a POJO for your properties and add some validation.
 
 [source, java]
 ----
 @ConfigurationProperties(prefix = "my.properties")
-public record SomeConfiguration(URI url,
+@Validated
+public record SomeConfiguration(@NotNull URI url,
                                 boolean activated,
-                                @DurationUnit(ChronoUnit.SECONDS) Duration timeout) {
+                                @MaxDuration(max = 3600, message = "The duration should be less than or equal to (3600 secondes)")
+                                @DurationUnit(ChronoUnit.SECONDS)
+                                Duration timeout) {
 }
-
 ----
 
 Add @EnableConfigurationProperties in your Spring Boot beans configuration.
