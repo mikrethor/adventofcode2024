@@ -56,3 +56,11 @@ link:./20241213/readme.asciidoc[DAY13 - readme]
 
 link:./20241214/readme.asciidoc[DAY14 - readme]
 
+== 20241215 - DAY15 - Integration test with testcontainers
+
+link:./20241215/readme.asciidoc[DAY15 - readme]
+
+== 20241216 - DAY16 - Integration test with testcontainers
+
+link:./20241216/readme.asciidoc[DAY16 - readme]
+
