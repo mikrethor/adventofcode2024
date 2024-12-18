@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: adventofcode
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/customer
+    username: customer
+    password: customer
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet:
+            function: DEBUG
+      springdoc: DEBUG
+
+my:
+  properties:
+    url: https://www.xavierbouclet.com
+    activated: true
+    timeout: 3000
