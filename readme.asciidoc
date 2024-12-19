@@ -52,15 +52,23 @@ link:./20241212/readme.asciidoc[DAY12 - readme]
 
 link:./20241213/readme.asciidoc[DAY13 - readme]
 
-== 20241214 - DAY14 - Integration test with testcontainers
+== 20241214 - DAY14 - Properties handling
 
 link:./20241214/readme.asciidoc[DAY14 - readme]
 
-== 20241215 - DAY15 - Integration test with testcontainers
+== 20241215 - DAY15 - Validation (Jakarta)
 
 link:./20241215/readme.asciidoc[DAY15 - readme]
 
-== 20241216 - DAY16 - Integration test with testcontainers
+== 20241216 - DAY16 - Build your app with a Dockerfile
 
 link:./20241216/readme.asciidoc[DAY16 - readme]
+
+== 20241217 - DAY17 - Build your app with buildpack
+
+link:./20241217/readme.asciidoc[DAY17 - readme]
+
+== 20241218 - DAY18 - Build your app with buildpack & GraalVM
+
+link:./20241218/readme.asciidoc[DAY18 - readme]
 

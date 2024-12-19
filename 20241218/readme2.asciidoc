@@ -1,0 +1,19 @@
+= Advent of Spring Boot - DAY18
+
+docker run -p 8080:8080 adventofcode:v1
+
+adventofcode                                        0.0.1-SNAPSHOT         dd65e8d780a9   44 years ago    174MB
+
+ docker run -p 8080:8080 adventofcode:0.0.1-SNAPSHOT
+
+
+ mvn -Pnative  spring-boot:build-image
+
+
+
+ $BP_BINARY_COMPRESSION_METHOD                Compression mechanism used to reduce binary size. Options: `none` (default), `upx` or `gzexe`
+
+curl localhost:8080/api/customers
+
+
+
