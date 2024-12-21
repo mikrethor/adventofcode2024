@@ -1,0 +1,43 @@
+= Advent of Spring Boot - DAY19
+
+Today we are gonna see about actuator.
+
+[source, xml]
+----
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+----
+
+
+Change the log level with a curl command :
+
+[source, bash]
+----
+curl -X POST "http://localhost:8080/actuator/loggers/com.xavierbouclet.adventofcode" -H "Content-Type: application/json" -d '{"configuredLevel":"ERROR"}'
+----
+
+Check the log level with a curl command :
+
+[source, bash]
+----
+curl "http://localhost:8080/actuator/loggers/com.xavierbouclet.adventofcode"
+----
+
+Call endpoint for metrics :
+
+[source, bash]
+----
+curl "http://localhost:8080/api/hello
+----
+
+
+== Resources
+
+- https://www.codeprimers.com/health-check-api-in-spring-boot-application/
+- https://www.baeldung.com/spring-boot-actuators
+- https://reflectoring.io/spring-boot-info-endpoint/
+
+
+
