@@ -75,3 +75,7 @@ link:./20241218/readme.asciidoc[DAY18 - readme]
 == 20241219 - DAY19 - Use actuator to investigate & monitore your app
 
 link:./20241219/readme.asciidoc[DAY19 - readme]
+
+== 20241220 - DAY20 - Add custom metrics and change log levels at runtime
+
+link:./20241220/readme.asciidoc[DAY20 - readme]

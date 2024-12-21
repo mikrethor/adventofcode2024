@@ -1,0 +1,67 @@
+= Advent of Spring Boot - DAY20
+
+Today we are gonna see about custom metrics & expose them in actuator.
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-core</artifactId>
+</dependency>
+----
+
+
+Change the log level with a curl command :
+
+[source, yaml]
+----
+...
+
+
+management:
+  ...
+  endpoint:
+   ...
+    metrics:
+      access: unrestricted
+
+  endpoints:
+    web:
+      exposure:
+        include: loggers,info,health,metrics
+
+  defaults:
+    metrics:
+      export:
+        enabled: true
+
+...
+
+
+----
+
+Call endpoint to increment metrics :
+
+[source, bash]
+----
+curl "http://localhost:8080/api/hello"
+----
+
+Call endpoint for metrics :
+
+[source, bash]
+----
+curl "http://localhost:8080/actuator/metrics/hello.called"  | jq
+----
+
+== Resources
+
+- https://medium.com/@AlexanderObregon/implementing-custom-metrics-with-micrometer-in-spring-boot-155641d57a20
+- https://www.baeldung.com/spring-boot-actuators
+
+
+

@@ -1,0 +1,25 @@
+= Customer API
+Version {project-version}
+:toc: left
+:toclevels: 3
+
+Provides service for managing customers resources.
+
+== Specification
+
+In addition to the documentation on this page, you can also download an Open API spec file:
+
+* link:../restdocs-spec/openapi-3.0.yml[Download as OpenAPI 3.0 YAML]
+
+[[resources]]
+== Resources
+
+[[resources-customer]]
+=== Customer
+
+[[resources-get-all-customers]]
+==== Get all persons
+
+A `GET` request is used to retrieve all customers.
+
+operation::get-customers[snippets='curl-request,http-request,http-response,httpie-request,response-body']
