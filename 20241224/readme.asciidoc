@@ -1,0 +1,180 @@
+= Advent of Spring Boot - DAY24
+
+Today, we are gonna add some AI capabilities to our API.
+
+For this, I am gonna use *Open AI*, so let's add the API KEY to our environment variables :
+
+[source, bash]
+----
+export OPENAI_API_KEY="your_api_key_here"
+----
+
+Let's add the dependencies :
+
+[source, xml]
+----
+ <dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+</dependency>
+----
+
+*Spring AI* is still in milestone so we need to specify a version and add the repositories.
+
+[source, xml]
+----
+ <properties>
+    <spring-ai.version>1.1.0</spring-ai.version>
+</properties>
+
+ <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+</dependencyManagement>
+
+----
+
+And the spring repositories :
+
+[source, xml]
+----
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+----
+
+We need to add a *@Configuration* class.
+
+[source, java]
+----
+@Configuration
+public class RagConfiguration {
+
+    private static final Logger log = LoggerFactory.getLogger(RagConfiguration.class);
+
+    @Value("vectorstore.json")
+    private String vectorStoreName;
+
+    @Value("classpath:/docs/qa.txt")
+    private Resource faq;
+
+    @Bean
+    SimpleVectorStore simpleVectorStore(EmbeddingModel embeddingModel) {
+        var simpleVectorStore = new SimpleVectorStore(embeddingModel);
+        var vectorStoreFile = getVectorStoreFile();
+        if (vectorStoreFile.exists()) {
+            log.info("Vector Store File Exists,");
+            simpleVectorStore.load(vectorStoreFile);
+        } else {
+            log.info("Vector Store File Does Not Exist, loading documents");
+            TextReader textReader = new TextReader(faq);
+            textReader.getCustomMetadata().put("filename", "qa.txt");
+            List<Document> documents = textReader.get();
+            TextSplitter textSplitter = new TokenTextSplitter();
+            List<Document> splitDocuments = textSplitter.apply(documents);
+            simpleVectorStore.add(splitDocuments);
+
+            simpleVectorStore.save(vectorStoreFile);
+        }
+        return simpleVectorStore;
+    }
+
+    //File could not exist at first
+    private File getVectorStoreFile() {
+        Path path = Paths.get("src", "main", "resources", "data");
+        String absolutePath = path.toFile().getAbsolutePath() + "/" + vectorStoreName;
+        return new File(absolutePath);
+    }
+}
+----
+
+We need to configure the spring ai properties in the application.yaml
+
+[source, yaml]
+----
+spring:
+  ai:
+    openai:
+      api-key: ${OPEN_API_KEY}
+      chat:
+        options:
+          model: gpt-4
+  ...
+----
+
+Let's use a *ChatClient* to call open AI.
+
+[source, java]
+----
+@SpringBootApplication
+public class AdventofcodeApplication {
+
+    private static final Logger log = LoggerFactory.getLogger(AdventofcodeApplication.class);
+
+    private ChatClient chatClient;
+
+
+    @Value("classpath:/prompts/rag-prompt-template.st")
+    private Resource ragPromptTemplate;
+
+    public static void main(String[] args) {
+        SpringApplication.run(AdventofcodeApplication.class, args);
+    }
+
+    @Bean
+    CommandLineRunner commandLineRunner(ChatClient.Builder builder, VectorStore vectorStore) {
+        return args -> {
+
+            this.chatClient = builder
+                    .defaultAdvisors(new QuestionAnswerAdvisor(vectorStore, SearchRequest.defaults()))
+                    .build();
+            String question = "What is the best developer conference in the world?";
+            log.info("Q: {}", question);
+            log.info(chatClient.prompt()
+                    .user(question)
+                    .call()
+                    .content());
+
+        };
+
+    }
+
+}
+----
+
+We need to add the data for our vector store :
+
+[source, text]
+----
+Q:What is the best developer blog in the world?
+A: The best blog is https://www.xavierbouclet.com where Xavier talks about backend, Java, Kotlin and AI
+
+Q:What is the best conference in the world?
+A: /dev/mtl is the best developer conference in the world.
+----
+
+== Resources
+
+- https://platform.openai.com/docs/quickstart[Spring AI quickstart]
+- https://www.baeldung.com/spring-data-redis-tutorial
+- https://medium.com/@tharindudulshanfdo/optimizing-spring-boot-applications-with-redis-caching-35eabadae012
+- https://github.com/danvega/spring-into-ai
+- https://www.youtube.com/danvega
+
+
+
+

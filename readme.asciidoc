@@ -91,3 +91,8 @@ link:./20241222/readme.asciidoc[DAY22 - readme] https://youtu.be/fIp_-TMIjvE[You
 == 20241223 - DAY23 - Caching with spring cache & Redis
 
 link:./20241223/readme.asciidoc[DAY23 - readme] https://youtu.be/jA6d1mz1sHk[YouTube]
+
+== 20241224 - DAY24 - RAG with Spring AI
+
+link:./20241224/readme.asciidoc[DAY24 - readme] https://youtu.be/WdZb0GinMNU[YouTube]
+
