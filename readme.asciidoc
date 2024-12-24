@@ -2,91 +2,91 @@
 
 == 20241201 - DAY01 - Create a Spring Boot application
 
-link:./20241201/readme.asciidoc[DAY01 - readme]
+link:./20241201/readme.asciidoc[DAY01 - readme] https://youtu.be/4wXbgwXbpLI[YouTube]
 
 == 20241202 - DAY02 - Add endpoints
 
-link:./20241202/readme.asciidoc[DAY02 - readme]
+link:./20241202/readme.asciidoc[DAY02 - readme] https://youtu.be/qeO1jQ1NxkM[YouTube]
 
 == 20241203 - DAY03 - Handling httpcode
 
-link:./20241203/readme.asciidoc[DAY03 - readme]
+link:./20241203/readme.asciidoc[DAY03 - readme] https://youtube.com/live/J1xApH7iWE8[YouTube]
 
 == 20241204 - DAY04 - Router function
 
-link:./20241204/readme.asciidoc[DAY04 - readme]
+link:./20241204/readme.asciidoc[DAY04 - readme] https://youtube.com/live/aMnop_HB91g[YouTube]
 
 == 20241205 - DAY05 - HandlerFilterFunction to handle errors
 
-link:./20241205/readme.asciidoc[DAY05 - readme]
+link:./20241205/readme.asciidoc[DAY05 - readme] https://youtu.be/bLJbBKwXMY4[YouTube]
 
 == 20241206 - DAY06 - Using ProblemDetail
 
-link:./20241206/readme.asciidoc[DAY06 - readme]
+link:./20241206/readme.asciidoc[DAY06 - readme] https://youtu.be/sRoYsksX-2Y[YouTube]
 
 == 20241207 - DAY07 - Add a database
 
-link:./20241207/readme.asciidoc[DAY07 - readme]
+link:./20241207/readme.asciidoc[DAY07 - readme] https://youtu.be/HzsifEcrGPA[YouTube]
 
 == 20241208 - DAY08 - Unit Tests with Mockito
 
-link:./20241208/readme.asciidoc[DAY08 - readme]
+link:./20241208/readme.asciidoc[DAY08 - readme] https://youtu.be/rmybE5tcObM[YouTube]
 
 == 20241209 - DAY09 - Unit Tests with MockMvc
 
-link:./20241209/readme.asciidoc[DAY09 - readme]
+link:./20241209/readme.asciidoc[DAY09 - readme] https://youtu.be/poQKwapvd4U[YouTube]
 
 == 20241210 - DAY10 - Unit Tests with RestAssured
 
-link:./20241210/readme.asciidoc[DAY10 - readme]
+link:./20241210/readme.asciidoc[DAY10 - readme] https://youtu.be/_GiHWgPSfs0[YouTube]
 
 == 20241211 - DAY11 - Integration test with testcontainers
 
-link:./20241211/readme.asciidoc[DAY11 - readme]
+link:./20241211/readme.asciidoc[DAY11 - readme] https://youtu.be/tf1gJ2sa5GQ[YouTube]
 
 == 20241212 - DAY12 - Documentation with springdoc
 
-link:./20241212/readme.asciidoc[DAY12 - readme]
+link:./20241212/readme.asciidoc[DAY12 - readme] https://youtu.be/i03wRCSlpR0[YouTube]
 
 == 20241213 - DAY13 - Documentation with springdoc
 
-link:./20241213/readme.asciidoc[DAY13 - readme]
+link:./20241213/readme.asciidoc[DAY13 - readme] https://youtu.be/_4CFuV1IlTc[YouTube]
 
 == 20241214 - DAY14 - Properties handling
 
-link:./20241214/readme.asciidoc[DAY14 - readme]
+link:./20241214/readme.asciidoc[DAY14 - readme] https://youtu.be/7tGodZHWGfI[YouTube]
 
 == 20241215 - DAY15 - Validation (Jakarta)
 
-link:./20241215/readme.asciidoc[DAY15 - readme]
+link:./20241215/readme.asciidoc[DAY15 - readme] https://youtu.be/wn8xJkdCrss[YouTube]
 
 == 20241216 - DAY16 - Build your app with a Dockerfile
 
-link:./20241216/readme.asciidoc[DAY16 - readme]
+link:./20241216/readme.asciidoc[DAY16 - readme] https://youtu.be/-iRWutNq3qA[YouTube]
 
 == 20241217 - DAY17 - Build your app with buildpack
 
-link:./20241217/readme.asciidoc[DAY17 - readme]
+link:./20241217/readme.asciidoc[DAY17 - readme] https://youtu.be/UWB8Sm9U2zg[YouTube]
 
 == 20241218 - DAY18 - Build your app with buildpack & GraalVM
 
-link:./20241218/readme.asciidoc[DAY18 - readme]
+link:./20241218/readme.asciidoc[DAY18 - readme] https://youtu.be/WLtA_nfZrzk[YouTube]
 
 == 20241219 - DAY19 - Use actuator to investigate & monitore your app
 
-link:./20241219/readme.asciidoc[DAY19 - readme]
+link:./20241219/readme.asciidoc[DAY19 - readme] https://youtu.be/5T8rEbIrih4[YouTube]
 
 == 20241220 - DAY20 - Add custom metrics and change log levels at runtime
 
-link:./20241220/readme.asciidoc[DAY20 - readme]
+link:./20241220/readme.asciidoc[DAY20 - readme] https://youtu.be/wpva1Cgz5wo[YouTube]
 
 == 20241221 - DAY21 - Integrate another API with the RestClient
 
-link:./20241221/readme.asciidoc[DAY21 - readme]
+link:./20241221/readme.asciidoc[DAY21 - readme] https://youtu.be/qyZeYxwWfyw[YouTube]
 
 == 20241222 - DAY22 - Integrate another API with the Http Interface
 
-link:./20241222/readme.asciidoc[DAY22 - readme]
+link:./20241222/readme.asciidoc[DAY22 - readme] https://youtu.be/fIp_-TMIjvE[YouTube]
 
 == 20241223 - DAY23 - Caching with spring cache & Redis
 
