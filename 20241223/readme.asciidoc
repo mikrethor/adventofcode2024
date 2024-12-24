@@ -1,0 +1,111 @@
+= Advent of Spring Boot - DAY23
+
+Today, we are gonna add a cache to our getProductById.
+
+Let's add the dependencies :
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+----
+
+Let's start the redis through Docker.
+
+[source, bash]
+----
+docker run --name my-redis -d -p 6379:6379 redis
+----
+
+We need to configure the cache in the application.yaml
+
+[source, yaml]
+----
+spring:
+  ...
+  cache:
+    cache-names: "productById"
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  ...
+----
+
+We need to add a *RedisCacheConfiguration* bean and the *@EnableCaching* annotation.
+
+[source, java]
+----
+@Configuration(proxyBeanMethods = false)
+@EnableCaching
+public class CacheConfiguration {
+
+    @Bean
+    RedisCacheConfiguration myCacheConfiguration() {
+        return RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofSeconds(10))
+                .disableCachingNullValues()
+                .serializeValuesWith(RedisSerializationContext
+                        .SerializationPair
+                        .fromSerializer(new GenericJackson2JsonRedisSerializer()));
+    }
+}
+----
+
+To make a method cacheable, the * @Cacheable* needs to be added on the method.
+
+[source, java]
+----
+@HttpExchange("/products")
+interface ProductService {
+
+    @GetExchange
+    List<Product> getProducts();
+
+    @GetExchange("/{id}")
+    @Cacheable(value = "productById", key = "#id")
+    Product getProductById(@PathVariable int id);
+}
+----
+
+We can test our Redis cache with :
+
+[source, java]
+----
+ @Bean
+    CommandLineRunner commandLineRunner(ProductService service) {
+        return args -> {
+            var before = Instant.now();
+            var first = service.getProductById(1);
+            var middle = Instant.now();
+            var second = service.getProductById(1);
+            var end = Instant.now();
+
+            Duration withCache = Duration.between(middle, end);
+            Duration withoutCache = Duration.between(before, middle);
+
+            System.out.println("With cache: "+withCache.toMillis()+ " ms");
+            System.out.println("Without cache: "+withoutCache.toMillis()+ " ms");
+
+        };
+
+    }
+----
+
+== Resources
+
+- https://docs.spring.io/spring-boot/reference/io/caching.html
+- https://spring.io/projects/spring-data-redis
+- https://www.bezkoder.com/spring-cacheevict/
+- https://www.baeldung.com/spring-data-redis-tutorial
+- https://medium.com/@tharindudulshanfdo/optimizing-spring-boot-applications-with-redis-caching-35eabadae012
+
+
+
