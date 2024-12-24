@@ -1,0 +1,70 @@
+= Advent of Spring Boot - DAY22
+
+Today we are gonna see about Http Interface with RestClient and use https://fakestoreapi.com/products[a Fake products API]
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.apache.httpcomponents.client5</groupId>
+  <artifactId>httpclient5</artifactId>
+</dependency>
+----
+
+
+Change the log level with a curl command :
+
+[source, yaml]
+----
+...
+
+
+management:
+  ...
+  endpoint:
+   ...
+    metrics:
+      access: unrestricted
+
+  endpoints:
+    web:
+      exposure:
+        include: loggers,info,health,metrics
+
+  defaults:
+    metrics:
+      export:
+        enabled: true
+
+...
+
+
+----
+
+Call endpoint to increment metrics :
+
+[source, bash]
+----
+curl "http://localhost:8080/api/hello"
+----
+
+Call endpoint for metrics :
+
+[source, bash]
+----
+curl "http://localhost:8080/actuator/metrics/hello.called"  | jq
+----
+
+== Resources
+
+- https://www.baeldung.com/spring-boot-restclient
+- https://docs.spring.io/spring-framework/reference/integration/rest-clients.html
+- https://howtodoinjava.com/spring/spring-restclient/
+- https://dev.to/guilhermesiqueira/advantages-of-using-http-interface-in-spring-6-1p4l
+- https://fakestoreapi.com
+
+
+

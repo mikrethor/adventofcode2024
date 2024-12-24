@@ -1,0 +1,97 @@
+= Advent of Spring Boot - DAY21
+
+Today we are gonna see about RestClient and use https://fakestoreapi.com/products[a Fake products API]
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.apache.httpcomponents.client5</groupId>
+  <artifactId>httpclient5</artifactId>
+</dependency>
+----
+
+
+Create the configuration class for the *RestClient*
+
+[source, java]
+----
+@Configuration(proxyBeanMethods = false)
+public class RestClientConfig {
+
+    RestClient defaultClient = RestClient.create();
+
+    @Bean
+    RestClient productRestClient() {
+        return RestClient.builder()
+                .requestFactory(new HttpComponentsClientHttpRequestFactory())
+                .baseUrl("https://fakestoreapi.com")
+                .build();
+    }
+}
+----
+
+Create the pojo Product
+
+[source, java]
+----
+public record Product(
+        int id,
+        String title,
+        double price,
+        String description,
+        String category,
+        String image,
+        Rating rating
+) {
+    public record Rating(
+            double rate,
+            int count
+    ) {}
+}
+----
+
+Create the service
+
+[source, java]
+----
+@Service
+public class ProductService {
+
+    private final RestClient restClient;
+
+    public ProductService(RestClient restClient) {
+        this.restClient = restClient;
+    }
+
+    public List<Product> getProducts(){
+        ParameterizedTypeReference<List<Product>> typeRef = new ParameterizedTypeReference<>() {};
+
+        return restClient.get().uri("/products")
+                .retrieve()
+                .body(typeRef);
+    }
+
+    public Product getProductById(long id){
+
+        return restClient.get().uri("/products/{id}", id)
+                .retrieve()
+                .body(Product.class);
+    }
+}
+----
+
+== Resources
+
+To go further :
+
+- https://www.baeldung.com/spring-boot-restclient
+- https://docs.spring.io/spring-framework/reference/integration/rest-clients.html
+- https://howtodoinjava.com/spring/spring-restclient/
+- https://fakestoreapi.com
+
+
+
