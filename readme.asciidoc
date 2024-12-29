@@ -96,3 +96,5 @@ link:./20241223/readme.asciidoc[DAY23 - readme] https://youtu.be/jA6d1mz1sHk[You
 
 link:./20241224/readme.asciidoc[DAY24 - readme] https://youtu.be/WdZb0GinMNU[YouTube]
 
+If you want more content go read my https://www.xavierbouclet.com[blog]
+
